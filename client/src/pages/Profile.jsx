@@ -115,16 +115,15 @@ export default function Profile() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await axios.post('/api/auth/signout');
-
-      if (!res.data.success) {
-        throw new Error('Failed to sign out. Please try again.');
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
       }
-
-      dispatch(deleteUserSuccess(res.data));
+      dispatch(deleteUserSuccess(data));
     } catch (error) {
-      console.error('Signout Error:', error);
-      dispatch(deleteUserFailure(error.message || 'Something went wrong'));
+      dispatch(deleteUserFailure(data.message));
     }
   };
 
