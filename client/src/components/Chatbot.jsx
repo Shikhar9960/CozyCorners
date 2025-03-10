@@ -14,7 +14,7 @@ const Chatbox = () => {
     //http://localhost:3000/api/chat
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("https://cozycorners-qddh.onrender.com//api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message }),
