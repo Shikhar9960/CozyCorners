@@ -165,9 +165,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 })
 
-router.get('/test', (req, res) => {
-  res.json({ message: 'Backend API is working!' });
-});
+
 
 
 // ✅ Error Handling Middleware
