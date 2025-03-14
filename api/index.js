@@ -151,19 +151,23 @@ app.use('/api/listing', listingRouter);
 
 app.use('/api', require('./routes/apiRoutes')); // Backend routes
 
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
+// app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-// Serve React frontend for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
-
-
-// app.use(express.static(path.join(__dirname, '/client/dist')));
-
+// // Serve React frontend for all other routes
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// })
+// });
+
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+
+router.get('/test', (req, res) => {
+  res.json({ message: 'Backend API is working!' });
+});
 
 
 // ✅ Error Handling Middleware
